@@ -1,6 +1,7 @@
 # Typically 1-8 decks of 52 cards in main deck
 
 # UPDATED (7/30/17)
+# UPDATED (8/14/17)
 
 import Card
 
@@ -30,7 +31,7 @@ class Decks:
     
     def subtract(self, cards: list):
         '''
-        Take out specific list of cards from master deck after each round of card dealings.
+        Take out specific list of Cards from master deck after each round of card dealings.
         Also update self._percOutOfDeck and self._numOfDecks.
         '''
         for card in cards:
@@ -39,11 +40,11 @@ class Decks:
         self._numOfDecks = self._round_to_nearest_half(len(self.cardList)/26)
         return
                 
-    def getDeckCount(self):
+    def get_Deck_Count(self):
         '''
         Returns number of Cards in Decks as an int.
         '''
         return len(self._cardList)
     
-    def getRemainingCount(self):
+    def get_Remaining_Count(self):
         return self._percOutOfDeck
