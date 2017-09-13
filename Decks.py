@@ -2,6 +2,7 @@
 
 # UPDATED (7/30/17)
 # UPDATED (8/14/17)
+# UPDATED (9/13/17)
 
 import Card
 
@@ -10,17 +11,16 @@ class Decks:
         self._staticNumOfDecks = int(numOfDecks)
         self._numOfDecks = numOfDecks   # Count to nearest half-deck
         self._percOutOfDeck = float()   # default 0.0
-        self._cardList = list()
+        self._cardDict = dict()
         self._setUp()
         
     def _setUp(self):
         '''
         Initializes Cards in Decks.
         '''
-        for deck in range(0, self._numOfDecks):
-            for value in ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A']:
-                card = Card(value)
-                self._cardList.append(card)
+        for value in ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A']:
+            card = Card(value)
+            self._cardDict.update(value=4*self._staticNumOfDecks)
         return
     
     def _round_to_nearest_half(self, value: float):
@@ -35,16 +35,25 @@ class Decks:
         Also update self._percOutOfDeck and self._numOfDecks.
         '''
         for card in cards:
-            self._cardList.remove(card)
+            self._carddict[card.value] -= 1
         self._percOutOfDeck += len(cards)/self._staticNumOfDecks
         self._numOfDecks = self._round_to_nearest_half(len(self.cardList)/26)
         return
-                
-    def get_Deck_Count(self):
+        
+    def get_deck_count(self):
         '''
         Returns number of Cards in Decks as an int.
         '''
-        return len(self._cardList)
+        count = 0
+        for v in self._cardDict.values():
+            count += v
+        return count
     
-    def get_Remaining_Count(self):
+    def get_remaining_count(self):
         return self._percOutOfDeck
+    
+    def get_remaining_cards(self, value: str):
+        '''
+        Returns number of remaining value cards in the master deck.
+        '''
+        return self._cardDict[value]

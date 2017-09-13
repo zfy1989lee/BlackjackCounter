@@ -8,5 +8,5 @@ import Hi_Lo
 if __name__ == '__main__':
     numOfDecks = input('How many decks are in the master blackjack deck? (1-8): ')
     master = Hi_Lo(numOfDecks, 0)
-    print(master.get_running_count())
-    print(master.get_true_count())
+#     print(master.get_running_count())
+#     print(master.get_true_count())
