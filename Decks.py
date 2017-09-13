@@ -20,7 +20,7 @@ class Decks:
         '''
         for value in ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A']:
             card = Card(value)
-            self._cardDict.update(value=4*self._staticNumOfDecks)
+            self._cardDict.update(card=4*self._staticNumOfDecks)
         return
     
     def _round_to_nearest_half(self, value: float):
@@ -35,7 +35,7 @@ class Decks:
         Also update self._percOutOfDeck and self._numOfDecks.
         '''
         for card in cards:
-            self._carddict[card.value] -= 1
+            self._cardDict[card.value] -= 1
         self._percOutOfDeck += len(cards)/self._staticNumOfDecks
         self._numOfDecks = self._round_to_nearest_half(len(self.cardList)/26)
         return
@@ -56,4 +56,4 @@ class Decks:
         '''
         Returns number of remaining value cards in the master deck.
         '''
-        return self._cardDict[value]
+        return self._cardDict[Card(value)]
